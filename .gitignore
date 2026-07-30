@@ -1,0 +1,18 @@
+# PlatformIO / firmware build
+firmware/.pio/
+firmware/.pioenvs/
+firmware/.piolibdeps/
+
+# KiCad backups / autosave
+*-bak
+*.kicad_pcb-bak
+*.kicad_sch-bak
+_autosave-*
+fp-info-cache
+*.lck
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,323 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "b1a0c000-0000-4000-8000-000000000001")
+	(paper "A3")
+	(title_block
+		(title "ReMow Core Controller Board")
+		(date "2026-07-30")
+		(rev "0.1")
+		(company "ReMow")
+		(comment 1 "Scaffold block schematic - functional blocks and buses.")
+		(comment 2 "Not fabrication-ready. See docs/electrical.md for details.")
+	)
+	(lib_symbols)
+
+	(text "ReMow Core - Tier 1 controller. Block-level scaffold."
+		(at 20 18 0)
+		(effects
+			(font (size 2.5 2.5))
+			(justify left bottom)
+		)
+		(uuid "b1a0c000-0000-4000-8000-000000000100")
+	)
+	(text "Power bus: VBAT_12V / +5V / +3V3 / GND. Expansion J8 carries power + UART/I2C/CAN to add-ons."
+		(at 20 24 0)
+		(effects
+			(font (size 1.5 1.5))
+			(justify left bottom)
+		)
+		(uuid "b1a0c000-0000-4000-8000-000000000101")
+	)
+
+	(rectangle
+		(start 20 30)
+		(end 75 55)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000200")
+	)
+	(text "J1 Power In\n(Alternator/PMA ->\nrectifier -> LiFePO4)"
+		(at 22 36 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000201")
+	)
+
+	(rectangle
+		(start 20 65)
+		(end 75 95)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000210")
+	)
+	(text "Rectifier + TVS +\nLiFePO4 4S buffer +\nBMS / charge ctrl"
+		(at 22 71 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000211")
+	)
+
+	(rectangle
+		(start 20 105)
+		(end 75 135)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000220")
+	)
+	(text "DC-DC rails\n12V (fused)\n5V buck\n3.3V buck"
+		(at 22 111 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000221")
+	)
+
+	(rectangle
+		(start 150 60)
+		(end 215 115)
+		(stroke (width 0.381) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000300")
+	)
+	(text "ESP32-S3 MCU\n- RC link task\n- Motion control\n- Command arbiter\n- Telemetry"
+		(at 152 66 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000301")
+	)
+
+	(rectangle
+		(start 150 130)
+		(end 215 165)
+		(stroke (width 0.381) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000310")
+	)
+	(text "Safety Supervisor\n(independent of FW)\nowns blade-kill +\ndrive-enable"
+		(at 152 136 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000311")
+	)
+
+	(rectangle
+		(start 150 180)
+		(end 215 205)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000320")
+	)
+	(text "J7 RC Receiver\n(ELRS CRSF/SBUS\nor ESP-NOW)"
+		(at 152 186 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000321")
+	)
+
+	(rectangle
+		(start 150 220)
+		(end 265 250)
+		(stroke (width 0.381) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000330")
+	)
+	(text "J8 Expansion Header (to Nav / Vision add-ons)\n+12V +5V +3V3 GND | UART | I2C | CAN | GPIO x2 | MODULE_ID"
+		(at 152 226 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000331")
+	)
+
+	(rectangle
+		(start 300 30)
+		(end 375 55)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000400")
+	)
+	(text "J2 Drive actuator\nH-bridge + feedback\n(self-propel engage)"
+		(at 302 36 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000401")
+	)
+
+	(rectangle
+		(start 300 65)
+		(end 375 90)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000410")
+	)
+	(text "J3 Steering actuator\nH-bridge + position\nfeedback"
+		(at 302 71 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000411")
+	)
+
+	(rectangle
+		(start 300 100)
+		(end 375 125)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000420")
+	)
+	(text "J4 Blade-kill relay\n(de-energized = safe)\n-> engine kill / clutch"
+		(at 302 106 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000421")
+	)
+
+	(rectangle
+		(start 300 135)
+		(end 375 160)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000430")
+	)
+	(text "J5 E-stop loop (NC)\nbreak = safe stop"
+		(at 302 141 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000431")
+	)
+
+	(rectangle
+		(start 300 170)
+		(end 375 195)
+		(stroke (width 0.254) (type solid))
+		(fill (type none))
+		(uuid "b1a0c000-0000-4000-8000-000000000440")
+	)
+	(text "J6 Tilt / lift\ntilt switch + accel (I2C)"
+		(at 302 176 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-000000000441")
+	)
+
+	(wire
+		(pts (xy 75 42) (xy 110 42))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000500")
+	)
+	(label "VBAT_12V"
+		(at 78 41 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000501")
+	)
+	(wire
+		(pts (xy 75 80) (xy 110 80))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000510")
+	)
+	(label "VBAT_12V"
+		(at 78 79 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000511")
+	)
+	(wire
+		(pts (xy 75 115) (xy 150 115))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000520")
+	)
+	(label "+3V3"
+		(at 78 114 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000521")
+	)
+	(wire
+		(pts (xy 75 122) (xy 145 122))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000530")
+	)
+	(label "+5V"
+		(at 78 121 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000531")
+	)
+
+	(wire
+		(pts (xy 215 75) (xy 300 42))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000540")
+	)
+	(label "DRIVE_PWM"
+		(at 217 74 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000541")
+	)
+	(wire
+		(pts (xy 215 85) (xy 300 77))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000550")
+	)
+	(label "STEER_PWM"
+		(at 217 84 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000551")
+	)
+	(wire
+		(pts (xy 215 147) (xy 300 112))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000560")
+	)
+	(label "BLADE_KILL"
+		(at 217 146 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000561")
+	)
+	(wire
+		(pts (xy 215 152) (xy 300 147))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000570")
+	)
+	(label "ESTOP_LOOP"
+		(at 217 151 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000571")
+	)
+	(wire
+		(pts (xy 215 158) (xy 300 182))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000580")
+	)
+	(label "TILT_I2C"
+		(at 217 157 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000581")
+	)
+	(wire
+		(pts (xy 182 165) (xy 182 130))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-000000000590")
+	)
+	(label "SAFE_ENABLE"
+		(at 183 148 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-000000000591")
+	)
+	(wire
+		(pts (xy 182 180) (xy 182 115))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-0000000005a0")
+	)
+	(label "RC_LINK"
+		(at 183 172 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-0000000005a1")
+	)
+	(wire
+		(pts (xy 200 220) (xy 200 115))
+		(stroke (width 0.254) (type default))
+		(uuid "b1a0c000-0000-4000-8000-0000000005b0")
+	)
+	(label "EXP_UART/I2C/CAN"
+		(at 201 190 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b1a0c000-0000-4000-8000-0000000005b1")
+	)
+
+	(text "SAFETY: normally-closed loops. Any break (e-stop, unplug, tilt, RC loss, power loss)\nde-energizes BLADE_KILL and drops SAFE_ENABLE. Supervisor acts independently of firmware."
+		(at 20 270 0)
+		(effects (font (size 1.5 1.5)) (justify left top))
+		(uuid "b1a0c000-0000-4000-8000-0000000005c0")
+	)
+
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
