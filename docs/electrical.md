@@ -1,8 +1,33 @@
 # Electrical Design
 
-The electrical system generates power from the running engine, buffers it, and distributes regulated rails to the Core, actuators, and add-on modules. It also implements the hardware safety cutoffs.
+The electrical system supplies power, buffers it, and distributes regulated rails to the Core, actuators, and add-on modules. It also implements the hardware safety cutoffs. ReMow supports **two interchangeable power modules** that share the same output connector to the Core, chosen by target mower (see [mower-compatibility.md](mower-compatibility.md) and [install-kit.md](install-kit.md)):
 
-## Power generation: the alternator subsystem
+- **Battery/controller tap (flagship, battery-electric mowers)** - reuse the mower's existing lithium pack. Simplest, no generation hardware.
+- **Alternator subsystem (gas mowers)** - generate power from the running engine.
+
+The rest of the board (rails, safety, connectors) is identical regardless of power module.
+
+## Power option A: battery/controller tap (battery-electric mowers)
+
+Battery-electric self-propelled mowers (EGO 56V, Ryobi 40V, Greenworks 60/80V) already carry a large lithium pack, so ReMow does not need an alternator. The tap module draws a modest amount from the existing pack and regulates it down to the ReMow rails.
+
+```mermaid
+flowchart LR
+  Pack["Mower battery pack<br/>(36-80V lithium)"] --> Tap["Fused tap + isolation"]
+  Tap --> Buck12["Buck to 12V"]
+  Buck12 --> Batt["Small LiFePO4 buffer (optional)"]
+  Batt --> Rails["5V / 3.3V rails"]
+```
+
+Design notes:
+
+- **Tap point:** the pack output / drive-controller input, behind a dedicated fuse and reverse-polarity protection. Do not interfere with the mower's own BMS or safety cutoffs.
+- **Wide-input buck:** the pack voltage varies by brand (nominal ~36-80V), so use a wide-input DC-DC to produce a stable 12V, then the standard 5V/3.3V bucks.
+- **Budget impact:** ReMow's electronics load (tens of watts) is small next to a mower drive/blade motor; account for the reduced runtime on the mower's own battery, or add a separate small pack for ReMow if you want to preserve mow time.
+- **Optional small buffer:** a tiny LiFePO4 buffer smooths transients and enables a "limp to safe stop" if the tap is interrupted.
+- **No load-dump concerns** like a spinning alternator, but still fuse and isolate properly.
+
+## Power option B: the alternator subsystem (gas mowers)
 
 The engine already produces mechanical power; ReMow taps a small fraction of it to make electricity.
 

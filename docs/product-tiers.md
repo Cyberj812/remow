@@ -22,12 +22,12 @@ The base kit. Turns the mower into a remote-controlled robot with a full safety 
 
 **Included**
 - ReMow Core controller board (ESP32-S3).
-- Engine-driven alternator/dynamo + rectifier/regulator + LiFePO4 buffer battery.
-- Drive actuator that engages/releases the existing self-propel drive control.
+- **One of two power modules** (same connector, chosen by target mower): a **battery/controller tap** for battery-electric mowers (flagship, no alternator), or an **engine-driven alternator/dynamo + rectifier/regulator + LiFePO4 buffer** for gas mowers. See [electrical.md](electrical.md).
+- Drive control: an electronic drive tap (electric mowers) or a cable interposer that actuates the existing self-propel control (gas mowers).
 - Steering actuator (front-wheel linkage kit).
 - Handheld RC remote (ESP-NOW or ExpressLRS).
-- Safety stack: hardware e-stop, blade-engagement kill relay, tilt/lift kill switch, RC-loss failsafe.
-- Mounting frame + handle-conversion hardware.
+- Safety stack: hardware e-stop, blade-engagement kill (electric enable-cut or blade-cable/bail actuator), tilt/lift kill switch, RC-loss failsafe.
+- Universal Fit Kit mounting hardware + handle-conversion hardware (see [install-kit.md](install-kit.md)).
 
 **Capabilities**
 - Manual remote driving (forward/steer, speed via drive-engagement modulation).
